@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>QuizMaster</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <b onclick="view('home')">🧠 QuizMaster</b>
+      <nav id="nav"></nav>
+    </header>
+
+    <main>
+      <div id="msg"></div>
+
+      <section id="home">
+        <div class="hero">
+          <div>
+            <small>LEARN • PRACTICE • IMPROVE</small>
+            <h1>
+              Test your knowledge.<br />
+              <span>Level up.</span>
+            </h1>
+            <p>Choose a topic, answer MCQs, and track your progress.</p>
+            <button onclick="view('topics')">Explore quizzes →</button>
+          </div>
+
+          <aside>
+            <div class="icon">🎯</div>
+            <h3>Ready for a challenge?</h3>
+            <p>Short quizzes. Instant feedback. Clear explanations.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="login" class="hidden">
+        <div class="form">
+          <h2>Login</h2>
+          <form id="loginForm">
+            <label>Email</label>
+            <input id="loginEmail" type="email" required />
+            <label>Password</label>
+            <input id="loginPassword" type="password" required />
+            <button>Login</button>
+          </form>
+          <p>New here? <a href="#" onclick="view('register')">Register</a></p>
+        </div>
+      </section>
+
+      <section id="register" class="hidden">
+        <div class="form">
+          <h2>Create account</h2>
+          <form id="registerForm">
+            <label>Name</label>
+            <input id="registerName" required />
+            <label>Email</label>
+            <input id="registerEmail" type="email" required />
+            <label>Password (6+ characters)</label>
+            <input id="registerPassword" type="password" minlength="6" required />
+            <button>Register</button>
+          </form>
+          <p>Already registered? <a href="#" onclick="view('login')">Login</a></p>
+        </div>
+      </section>
+
+      <section id="topics" class="hidden">
+        <h2>Quiz topics</h2>
+        <div id="topicGrid" class="grid"></div>
+      </section>
+
+      <section id="quiz" class="hidden">
+        <button class="secondary" onclick="view('topics')">← Topics</button>
+        <p id="progress"></p>
+        <p id="timer" class="timer" role="timer" aria-live="polite"></p>
+
+        <div class="bar">
+          <div id="bar"></div>
+        </div>
+
+        <div class="card">
+          <h2 id="qtext"></h2>
+          <div id="opts"></div>
+          <div id="exp" class="explanation hidden"></div>
+          <button id="check" onclick="checkAnswer()">Check answer</button>
+          <button id="next" class="hidden" onclick="next()">Next →</button>
+        </div>
+      </section>
+
+      <section id="result" class="hidden">
+        <div class="form center">
+          <h2 id="resultTitle">Result</h2>
+          <div class="score" id="score"></div>
+          <p id="resultMsg"></p>
+          <button onclick="view('topics')">Try another quiz</button>
+          <button class="secondary" onclick="view('history')">History</button>
+        </div>
+      </section>
+
+      <section id="history" class="hidden">
+        <h2>Quiz history</h2>
+        <div id="historyList"></div>
+      </section>
+
+      <section id="admin" class="hidden">
+        <h2>Admin console</h2>
+
+        <div class="adminGrid">
+          <div class="form">
+            <h3>Create topic</h3>
+            <form id="topicForm">
+              <label>Topic name</label>
+              <input id="topicName" required />
+              <label>Description</label>
+              <textarea id="topicDescription"></textarea>
+              <button>Add topic</button>
+            </form>
+          </div>
+
+          <div class="form">
+            <h3>Add question</h3>
+            <form id="questionForm">
+              <label>Topic</label>
+              <select id="questionTopic"></select>
+              <label>Question</label>
+              <textarea id="questionTextInput" required></textarea>
+              <label>Option A</label>
+              <input id="option0" required />
+              <label>Option B</label>
+              <input id="option1" required />
+              <label>Option C</label>
+              <input id="option2" required />
+              <label>Option D</label>
+              <input id="option3" required />
+              <label>Correct option</label>
+              <select id="correctIndex">
+                <option value="0">A</option>
+                <option value="1">B</option>
+                <option value="2">C</option>
+                <option value="3">D</option>
+              </select>
+              <label>Explanation</label>
+              <textarea id="questionExplanation" required></textarea>
+              <button>Add question</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="form wide">
+          <h3>Existing topics</h3>
+          <div id="adminTopics"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>QuizMaster • Full-stack college project</footer>
+    <script src="app.js"></script>
+  </body>
+</html>
